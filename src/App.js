@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import PaymentForm from './components/PaymentForm';
+import MobileWalletForm from './components/MobileWalletForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const [amount, setAmount] = useState(0);
+  const [showCardModal, setShowCardModal] = useState(false);
+  const [showWalletModal, setShowWalletModal] = useState(false);
+
+  const handleCardPayment = () => setShowCardModal(true);
+  const handleWalletPayment = () => setShowWalletModal(true);
+  const handleClose = () => {
+      setShowCardModal(false);
+      setShowWalletModal(false);
+  };
+
+  const handleAmountChange = (event) => {
+      setAmount(event.target.value);
+  };
+
+    return (
+        <div className="App">
+            <h1>Choose Payment Method</h1>
+            <div>
+                <label>Enter Amount</label>
+                <input type="number" value={amount} onChange={handleAmountChange} />
+            </div>
+            <div className="d-flex justify-content-around">
+                <Button variant="primary" onClick={handleCardPayment}>
+                    <img src="/path/to/card-icon.png" alt="Card Payment" /> Card Payment
+                </Button>
+                <Button variant="secondary" onClick={handleWalletPayment}>
+                    <img src="./img/180px-Moov_Africa_logo.webp" alt="Mobile Wallet" style={{height: '100px', width: '200px'}} />
+                </Button>
+                <Button variant="secondary" onClick={handleWalletPayment}>
+                    <img src="./img/mtn-logo-40644FC8B0-seeklogo.com.webp" alt="Mobile Wallet" style={{height: '100px', width: '200px'}} />
+                </Button>
+            </div>
+
+            <Modal show={showCardModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Card Payment</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <PaymentForm amount={amount} />
+                </Modal.Body>
+            </Modal>
+
+            <Modal show={showWalletModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Mobile Wallet Payment</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <MobileWalletForm amount={amount} />
+                </Modal.Body>
+            </Modal>
+        </div>
+    );
+};
 
 export default App;
