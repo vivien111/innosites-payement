@@ -1,7 +1,9 @@
 {
   "name": "innosites-payement",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Innosites library Payement",
+  "main": "index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -14,10 +16,23 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "clean": "rm -rf dist",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm clean && tsc && cp package.json README.md ./dist",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivien111/innosites-payement.git"
+  },
+  "author": {
+    "name": "Vivien Kakpo",
+    "url": "https://fildon.me/"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vivien111/innosites-payement/issues"
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +51,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^2.79.1",
+    "rollup-plugin-babel": "^4.4.0"
   }
 }
