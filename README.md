@@ -3,14 +3,12 @@
 A simple payment form component for React.
 
 ## Installation
-
+```shell
 npm i innosites-payement
 
 npm install innosites-payement
-
-
-
-// src/App.js
+```
+```js
 import React from 'react';
 import { PaymentComponent } from 'innosites-payement';
 
@@ -26,3 +24,4 @@ const App = () => {
 };
 
 export default App;
+```
